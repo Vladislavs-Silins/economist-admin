@@ -22,43 +22,31 @@ const PromotionLayout = Loadable({
   loading: Loading,
 });
 
-const CampaignLayout = Loadable({
-  loader: () => import('./components/CampaignLayout'),
+const OfferLayout = Loadable({
+  loader: () => import('./components/OfferLayout'),
   loading: Loading,
 });
 
-const CampaignLayout = Loadable({
-  loader: () => import('./components/CampaignLayout'),
-  loading: Loading,
-});
-
-
-const CampaignLayout = Loadable({
-  loader: () => import('./components/CampaignLayout'),
-  loading: Loading,
-});
-
-const CampaignLayout = Loadable({
-  loader: () => import('./components/CampaignLayout'),
-  loading: Loading,
-});
-
-const CampaignLayout = Loadable({
-  loader: () => import('./components/CampaignLayout'),
-  loading: Loading,
-});
-
-const CampaignLayout = Loadable({
-  loader: () => import('./components/CampaignLayout'),
-  loading: Loading,
-});
-
-const CampaignLayout = Loadable({
-  loader: () => import('./components/CampaignLayout'),
+const PremiaLayout = Loadable({
+  loader: () => import('./components/PremiaLayout'),
   loading: Loading,
 });
 
 
+const ProductLayout = Loadable({
+  loader: () => import('./components/ProductLayout'),
+  loading: Loading,
+});
+
+const SettingsLayout = Loadable({
+  loader: () => import('./components/SettingsLayout'),
+  loading: Loading,
+});
+
+const UXJourneyLayout = Loadable({
+  loader: () => import('./components/UXJourneyLayout'),
+  loading: Loading,
+});
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -66,15 +54,15 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   // My router pages
   { path: '/campaigns', name: 'Campaigns', component: CampaignLayout },
-  // { path: '/promotions', name: 'Promotions', component: PromotionLayout },
-  // { path: '/offers', name: 'Offers', component: OfferLayout },  
-  // { path: '/premia', name: 'Premias', component: PremiaLayout },
-  // { path: '/product', name: 'Products', component: ProductLayout },
-  // { path: '/settings', name: 'Settings', component: SettingsLayout },
-  // { path: '/settings/categories', name: 'Offer Categories', component: SettingsLayout },
-  // { path: '/settings/payment-type', name: 'Payment Types', component: SettingsLayout },
-  // { path: '/settings/terms', name: 'Offer Terms', component: SettingsLayout },
-  // { path: '/ux-journey', name: 'UX Journey', component: UXJourneyLayout },
+  { path: '/promotions', name: 'Promotions', component: PromotionLayout },
+  { path: '/offers', name: 'Offers', component: OfferLayout },
+  { path: '/premias', name: 'Premias', component: PremiaLayout },
+  { path: '/products', name: 'Products', component: ProductLayout },
+  { path: '/settings', name: 'Settings', component: SettingsLayout },
+  { path: '/settings/categories', name: 'Offer Categories', component: SettingsLayout },
+  { path: '/settings/payment-type', name: 'Payment Types', component: SettingsLayout },
+  { path: '/settings/terms', name: 'Offer Terms', component: SettingsLayout },
+  { path: '/ux-journey', name: 'UX Journey', component: UXJourneyLayout },
   // My router pages end  
 ];
 
