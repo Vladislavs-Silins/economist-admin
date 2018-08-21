@@ -60,6 +60,15 @@ export default {
       },
     },
     {
+      name: 'UX Journey',
+      url: '/ux-journey',
+      icon: 'icon-layers',
+      wrapper: {
+        element: '',
+        attributes: {},
+      },
+    },
+    {
       name: 'Settings',
       url: '/settings',
       icon: 'icon-settings',
