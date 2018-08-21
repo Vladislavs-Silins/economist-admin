@@ -1,15 +1,19 @@
 import React from 'react';
-import cssModule from 'react-css-modules';
-import styles from './PremiaLayout.css';
 
-const PremiaLayout = () => (
-  <div>
-    PremiaLayout
-  </div>
-);
+class PremiaLayout extends React.Component {
+  static propTypes = {
+
+  }
+  render = () => (
+    <div>
+      PromotionLayout
+    </div>
+  )
+}
 
 PremiaLayout.propTypes = {
 
 };
 
-export default cssModule(PremiaLayout, styles);
+export default PremiaLayout;
+

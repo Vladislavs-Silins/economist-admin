@@ -9869,5 +9869,10 @@ body {
 .app-header .navbar-nav .dropdown-menu-right {
   right: auto; }
 
+.items-add-button {
+  position: fixed;
+  bottom: 70px;
+  right: 25px; }
+
 html body .app.flex-row.align-items-center {
   height: 100vh; }

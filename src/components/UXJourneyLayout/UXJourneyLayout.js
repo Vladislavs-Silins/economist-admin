@@ -1,15 +1,18 @@
 import React from 'react';
-import cssModule from 'react-css-modules';
-import styles from './UXJourneyLayout.css';
 
-const UXJourneyLayout = () => (
-  <div>
-    UXJourneyLayout
-  </div>
-);
+class UXJourneyLayout extends React.Component {
+  static propTypes = {
+
+  }
+  render = () => (
+    <div>
+      UXJourneyLayout
+    </div>
+  )
+}
 
 UXJourneyLayout.propTypes = {
 
 };
 
-export default cssModule(UXJourneyLayout, styles);
+export default UXJourneyLayout;
