@@ -17,6 +17,11 @@ const CampaignLayout = Loadable({
   loading: Loading,
 });
 
+const CampaignItemLayout = Loadable({
+  loader: () => import('./components/CampaignItemLayout'),
+  loading: Loading,
+});
+
 const PromotionLayout = Loadable({
   loader: () => import('./components/PromotionLayout'),
   loading: Loading,
@@ -54,6 +59,7 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   // My router pages
   { path: '/campaigns', name: 'Campaigns', component: CampaignLayout },
+  { path: '/campaign/:code?', name: 'Campaign Item', component: CampaignItemLayout },
   { path: '/promotions', name: 'Promotions', component: PromotionLayout },
   { path: '/offers', name: 'Offers', component: OfferLayout },
   { path: '/premias', name: 'Premias', component: PremiaLayout },

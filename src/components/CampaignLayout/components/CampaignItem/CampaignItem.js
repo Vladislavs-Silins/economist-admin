@@ -5,16 +5,21 @@ import { PropTypes } from 'prop-types';
 import { Campaign } from './../../../../model/Campaign';
 import Widget01 from '../../../../views/Widgets/Widget01';
 
-const CampaignItem = ({ campaign, color, value }) => (
+const CampaignItem = ({ campaign, color, click }) => (
   <div>
-    < Widget01 color={color} value={value.toString()} variant="inverse" header={campaign.code} mainText={campaign.description} ></Widget01>
+    {campaign.getExpiredStateFlag() 
+    ?
+      < Widget01 onClick={click} className="widget--clicable" color="success" value={campaign.getPromotionsProgress().toString()} variant="inverse" header={campaign.code} mainText={campaign.description} smallText="Campaign is expired! Click to edit Campaign info" ></Widget01>      
+      :
+      < Widget01 onClick={click} className="widget--clicable" color={color} value={campaign.getPromotionsProgress().toString()} variant="" header={campaign.code} mainText={campaign.description} smallText="Click to edit Campaign info" ></Widget01>
+      }
   </div>
 );
 
 CampaignItem.propTypes = {
   campaign: PropTypes.instanceOf(Campaign),
-  color: PropTypes.string,
-  value: PropTypes.number
+  color: PropTypes.string,  
+  click: PropTypes.func.isRequired  
 };
 
 export default cssModule(CampaignItem, styles);

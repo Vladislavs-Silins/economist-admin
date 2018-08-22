@@ -9,8 +9,11 @@ class CampaignLayout extends React.Component {
   static propTypes = {
 
   }
-  campaigns = [];
-  campaignMap = {};
+  state = {
+    campaigns: [],
+    campaignMap: {}
+  }
+
 
   componentWillMount = () => {
     this.getCompaignList();
@@ -18,22 +21,31 @@ class CampaignLayout extends React.Component {
 
   // TODO: change function that gets mock's data to correct one
   getCompaignList = () => {
-    this.campaignMap = CAMPAIGNMAP;
-    this.campaigns = Array.from(this.campaignMap.keys());
+    this.setState((prevState) => {
+      return {
+        campaignMap: CAMPAIGNMAP,
+        campaigns: Array.from(CAMPAIGNMAP.keys())
+      };
+    });
+
   };
   getColor = (index = 0) => {
     const colors = ['blue', 'yellow', 'pink', 'green', 'indigo', 'teal', 'purple', 'orange', 'cyan'];
     return colors[index % 9];
+  }
 
+  handleOpenCompaignItemForEdit = (code) => () => {
+    this.props.history.push(`/campaign/${code}`);
+    console.log('openCompaignItemForEdit');
   }
 
   render = () => (
     <div className="animated fadeIn">
       <Row>
-        {this.campaigns.map((campaignCode, index) => {
+        {this.state.campaigns.map((campaignCode, index) => {
           return (
             <Col key={uuid()} xs="12" sm="6" lg="3">
-              <CampaignItem campaign={this.campaignMap.get(campaignCode)} color={this.getColor(index)} value={this.campaignMap.get(campaignCode).getPromotionsProgress()}></CampaignItem>
+              <CampaignItem click={this.handleOpenCompaignItemForEdit(campaignCode)} campaign={this.state.campaignMap.get(campaignCode)} color={this.getColor(index)}></CampaignItem>
             </Col>
           )
         })}
