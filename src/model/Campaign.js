@@ -16,5 +16,15 @@ export class Campaign {
   getExpiredStateFlag() {
     return this.code === '3';
   }
+
+  addPromotion(code) {
+    console.log(code);
+
+    if (this.promotions.indexOf(code) === -1) {
+      this.promotions.push(code);
+      console.log(this.promotions);
+
+    }
+  }
 }
 

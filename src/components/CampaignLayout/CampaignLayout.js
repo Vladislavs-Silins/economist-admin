@@ -3,6 +3,7 @@ import { Col, Row, Button } from 'reactstrap';
 import { CAMPAIGNMAP } from '../../mock-data';
 import CampaignItem from './components/CampaignItem';
 import uuid from 'uuid';
+import Tools from 'tools';
 
 
 class CampaignLayout extends React.Component {
@@ -15,7 +16,7 @@ class CampaignLayout extends React.Component {
   }
 
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getCompaignList();
   }
 
@@ -29,14 +30,9 @@ class CampaignLayout extends React.Component {
     });
 
   };
-  getColor = (index = 0) => {
-    const colors = ['blue', 'yellow', 'pink', 'green', 'indigo', 'teal', 'purple', 'orange', 'cyan'];
-    return colors[index % 9];
-  }
 
   handleOpenCompaignItemForEdit = (code) => () => {
     this.props.history.push(`/campaign/${code}`);
-    console.log('openCompaignItemForEdit');
   }
 
   render = () => (
@@ -45,7 +41,7 @@ class CampaignLayout extends React.Component {
         {this.state.campaigns.map((campaignCode, index) => {
           return (
             <Col key={uuid()} xs="12" sm="6" lg="3">
-              <CampaignItem click={this.handleOpenCompaignItemForEdit(campaignCode)} campaign={this.state.campaignMap.get(campaignCode)} color={this.getColor(index)}></CampaignItem>
+              <CampaignItem click={this.handleOpenCompaignItemForEdit(campaignCode)} campaign={this.state.campaignMap.get(campaignCode)} color={Tools.getCampaignColor(campaignCode)}></CampaignItem>
             </Col>
           )
         })}

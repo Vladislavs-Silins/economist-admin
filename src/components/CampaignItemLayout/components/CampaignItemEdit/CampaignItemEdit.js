@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Button, Card, CardBody, Form, FormGroup, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
-import { Campaign } from './../../../../model/Campaign';
+import { Campaign } from 'model/Campaign';
 import { PropTypes } from 'prop-types';
 
 class CampaignItemEdit extends React.Component {
@@ -23,7 +23,7 @@ class CampaignItemEdit extends React.Component {
             <Col lg={3}>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
-                  <InputGroupText>Username</InputGroupText>
+                  <InputGroupText>Code</InputGroupText>
                 </InputGroupAddon>
                 <Input type="text" id="code" placeholder={this.state.campaign.code} required />
               </InputGroup>
@@ -31,7 +31,7 @@ class CampaignItemEdit extends React.Component {
             <Col lg={7}>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
-                  <InputGroupText>Username</InputGroupText>
+                  <InputGroupText>Description</InputGroupText>
                 </InputGroupAddon>
                 <Input type="text" name="description" id="description" placeholder={this.state.campaign.description} required />
               </InputGroup>
