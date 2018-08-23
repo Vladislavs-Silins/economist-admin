@@ -1,6 +1,4 @@
 import React from 'react';
-import { Campaign } from 'model/Campaign';
-import { PropTypes } from 'prop-types';
 import { PROMOTIONMAP } from 'mock-data';
 import { Row, Col, Button } from 'reactstrap';
 import uuid from 'uuid';

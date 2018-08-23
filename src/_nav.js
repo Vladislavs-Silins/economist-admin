@@ -88,6 +88,11 @@ export default {
           url: '/settings/terms',
           icon: 'icon-calendar',
         },
+        {
+          name: 'Countries',
+          url: '/settings/countries',
+          icon: 'icon-map',
+        },
 
       ],
     },

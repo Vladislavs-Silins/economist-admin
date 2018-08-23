@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Card } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 // import cssModule from 'react-css-modules';
 // import styles from './CampaignItemLayout.css';
 import { CAMPAIGNMAP } from 'mock-data/index';
@@ -23,9 +23,9 @@ class CampaignItemLayout extends React.Component {
     <div>
       <Row>
         <Col>
-          <CampaignItemEdit campaign={this.state.campaign} />          
+          <CampaignItemEdit campaign={this.state.campaign} />
           <CampaignItemPromotionList campaign={this.state.campaign} />
-          
+
         </Col>
       </Row>
     </div>

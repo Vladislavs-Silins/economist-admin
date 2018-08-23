@@ -1,27 +1,106 @@
 import React from 'react';
-import { Col, Row, Button, Jumbotron } from 'reactstrap';
+import { Col, Row, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
+import classnames from 'classnames';
+import { Redirect } from 'react-router-dom';
+import OfferCategories from './components/OfferCategories';
+import PaymentTypes from './components/PaymentTypes';
+import Terms from './components/Terms';
+import Countries from './components/Countries';
+
 class SettingsLayout extends React.Component {
   static propTypes = {
 
   }
-  render = () => (
-    <div>
-      <Row>
-        <Col>
-          <Jumbotron>
-            <h1 className="display-3">SettingsLayout</h1>
-            <p className="lead">This is a simple hero unit, a simple Jumbotron-style component for calling extra
-                    attention to featured content or information.</p>
-            <hr className="my-2" />
-            <p>Under construction</p>
-            <p className="lead">
-              <Button color="primary">Learn More</Button>
-            </p>
-          </Jumbotron>
-        </Col>
-      </Row>
-    </div>
-  )
+
+  constructor(props) {
+    super(props);
+    const currentRoute = this.props.location.pathname.split('/').pop();
+    this.props.history.listen((location, action) => {
+      const currentRoute = location.pathname.split('/').pop();
+      this.setState((prevState) => {
+        return {
+          activeTab: currentRoute,
+          redirect: false
+        };
+      });
+    });
+
+    this.state = {
+      activeTab: currentRoute,
+      redirect: false
+    };
+  }
+
+  toggle = (tab) => {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab,
+        redirect: true
+      });
+    }
+  }
+  render = () => {
+    if (this.state.redirect) {
+      return (<Redirect push to={`/settings/${this.state.activeTab}`} />);
+    } else {
+      return (
+        <div>
+          <Row>
+            <Col>
+              <Nav tabs>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === 'categories' })}
+                    onClick={() => { this.toggle('categories'); }}
+                  >
+                    Offer Categories
+                </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === 'payment-types' })}
+                    onClick={() => { this.toggle('payment-types'); }}
+                  >
+                    Payment Types
+                </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === 'terms' })}
+                    onClick={() => { this.toggle('terms'); }}
+                  >
+                    Terms
+                </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === 'countries' })}
+                    onClick={() => { this.toggle('countries'); }}
+                  >
+                    Countries
+                </NavLink>
+                </NavItem>
+              </Nav>
+              <TabContent activeTab={this.state.activeTab}>
+                <TabPane tabId="categories">
+                  <OfferCategories/>
+              </TabPane>
+                <TabPane tabId="payment-types">
+                  <PaymentTypes/>
+              </TabPane>
+                <TabPane tabId="terms">
+                  <Terms/>
+              </TabPane>
+                <TabPane tabId="countries">
+                  <Countries/>
+              </TabPane>
+              </TabContent>
+            </Col>
+          </Row>
+        </div>)
+    }
+  }
+
 }
 
 SettingsLayout.propTypes = {

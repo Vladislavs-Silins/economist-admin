@@ -70,10 +70,11 @@ const routes = [
   { path: '/offers', name: 'Offers', component: OfferLayout },
   { path: '/premias', name: 'Premias', component: PremiaLayout },
   { path: '/products', name: 'Products', component: ProductLayout },
-  { path: '/settings', name: 'Settings', component: SettingsLayout },
-  { path: '/settings/categories', name: 'Offer Categories', component: SettingsLayout },
+  { path: '/settings/:type?', name: 'Settings', component: SettingsLayout },
+  { path: '/settings', name: 'Offer Categories', component: SettingsLayout },
   { path: '/settings/payment-type', name: 'Payment Types', component: SettingsLayout },
   { path: '/settings/terms', name: 'Offer Terms', component: SettingsLayout },
+  { path: '/settings/countries', name: 'Countries', component: SettingsLayout },
   { path: '/ux-journey', name: 'UX Journey', component: UXJourneyLayout },
   // My router pages end  
 ];
