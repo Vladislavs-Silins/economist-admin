@@ -7,7 +7,7 @@ import Widget02 from 'views/Widgets/Widget02';
 
 const OfferCategoryItem = ({ category, click }) => (
   <div>
-    <Widget02 className="widget--clicable" onClick={click} color="teal" icon="fa fa-cogs" header={category.code} mainText={category.description} variant='0'></Widget02>
+    <Widget02 className="widget--clicable" onClick={click} color="teal" icon="fa fa-cogs" header="" mainText={category.description} variant='0'></Widget02>
   </div>
 );
 

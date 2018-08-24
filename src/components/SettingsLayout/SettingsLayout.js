@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { Redirect } from 'react-router-dom';
 import OfferCategories from './components/OfferCategories';
 import PaymentTypes from './components/PaymentTypes';
-import Terms from './components/Terms';
+import OfferTerms from './components/OfferTerms';
 import Countries from './components/Countries';
 
 class SettingsLayout extends React.Component {
@@ -83,17 +83,17 @@ class SettingsLayout extends React.Component {
               </Nav>
               <TabContent activeTab={this.state.activeTab}>
                 <TabPane tabId="categories">
-                  <OfferCategories/>
-              </TabPane>
+                  <OfferCategories />
+                </TabPane>
                 <TabPane tabId="payment-types">
-                  <PaymentTypes/>
-              </TabPane>
+                  <PaymentTypes />
+                </TabPane>
                 <TabPane tabId="terms">
-                  <Terms/>
-              </TabPane>
+                  <OfferTerms />
+                </TabPane>
                 <TabPane tabId="countries">
-                  <Countries/>
-              </TabPane>
+                  <Countries />
+                </TabPane>
               </TabContent>
             </Col>
           </Row>

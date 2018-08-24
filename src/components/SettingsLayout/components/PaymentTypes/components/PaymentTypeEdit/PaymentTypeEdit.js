@@ -18,15 +18,15 @@ class PaymentTypeEdit extends React.Component {
       <CardBody>
         <Form action="" method="post" className="form-horizontal">
           <FormGroup className="pr-1" row>
-            <Col lg={3}>
+            {/* <Col lg={3}>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>Code</InputGroupText>
                 </InputGroupAddon>
                 <Input type="text" id="code" defaultValue={this.props.type.code} placeholder="" required />
               </InputGroup>
-            </Col>
-            <Col lg={7}>
+            </Col> */}
+            <Col lg={10}>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>Description</InputGroupText>

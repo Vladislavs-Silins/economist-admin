@@ -1,11 +1,11 @@
 import React from 'react';
 import { Col, Button, Card, CardBody, Form, FormGroup, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { PropTypes } from 'prop-types';
-import { OfferCategory } from 'model/OfferCategory';
+import { OfferTerm } from 'model/OfferTerm';
 
-class OfferCategoryEdit extends React.Component {
+class OfferTermEdit extends React.Component {
   static propTypes = {
-    category: PropTypes.instanceOf(OfferCategory),
+    term: PropTypes.instanceOf(OfferTerm),
     reset: PropTypes.func.isRequired
   }
 
@@ -18,22 +18,23 @@ class OfferCategoryEdit extends React.Component {
       <CardBody>
         <Form action="" method="post" className="form-horizontal">
           <FormGroup className="pr-1" row>
-            {/* <Col lg={3}>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>Code</InputGroupText>
-                </InputGroupAddon>
-                <Input type="text" id="code" defaultValue={this.props.category.code} placeholder="" required />
-              </InputGroup>
-            </Col> */}
-            <Col lg={10}>
+            <Col lg={8}>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>Description</InputGroupText>
                 </InputGroupAddon>
-                <Input type="text" name="description" id="description" defaultValue={this.props.category.description} placeholder="" required />
+                <Input type="text" name="description" defaultValue={this.props.term.description} placeholder="" required />
               </InputGroup>
             </Col>
+            <Col lg={2}>
+              <InputGroup>
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>Duration</InputGroupText>
+                </InputGroupAddon>
+                <Input type="number" name="duration" value={this.props.term.duration} placeholder="" required />
+              </InputGroup>
+            </Col>
+
             <Col lg={1}>
               <Button block active color="ghost-primary" aria-pressed="true" onClick={this.props.reset}>Reset</Button>
             </Col>
@@ -47,4 +48,4 @@ class OfferCategoryEdit extends React.Component {
   )
 }
 
-export default OfferCategoryEdit;
+export default OfferTermEdit;

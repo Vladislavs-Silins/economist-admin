@@ -2,10 +2,12 @@ import { Campaign } from "model/Campaign";
 import { Promotion } from 'model/Promotion';
 import { OfferCategory } from "model/OfferCategory";
 import { PaymentType } from './../model/PaymentType';
+import { OfferTerm } from "../model/OfferTerm";
 export const CAMPAIGNMAP = new Map();
 export const PROMOTIONMAP = new Map();
 export const OFFERCATEGORYMAP = new Map();
 export const PAYMENTTYPEMAP = new Map();
+export const OFFERTERMMAP = new Map();
 
 CAMPAIGNMAP.set('1', new Campaign({ code: '1', description: 'Campaign 1' }));
 CAMPAIGNMAP.set('2', new Campaign({ code: '2', description: 'Campaign 2' }));
@@ -36,3 +38,7 @@ PAYMENTTYPEMAP.set('2', new PaymentType({ code: '2', description: 'Payment Type 
 PAYMENTTYPEMAP.set('3', new PaymentType({ code: '3', description: 'Payment Type 3' }));
 PAYMENTTYPEMAP.set('4', new PaymentType({ code: '4', description: 'Payment Type 4' }));
 
+OFFERTERMMAP.set('1', new OfferTerm({ code: '1', description: 'Offer Term 1', duration: 1 }));
+OFFERTERMMAP.set('2', new OfferTerm({ code: '2', description: 'Offer Term 2', duration: 5 }));
+OFFERTERMMAP.set('3', new OfferTerm({ code: '3', description: 'Offer Term 3', duration: 10 }));
+OFFERTERMMAP.set('4', new OfferTerm({ code: '4', description: 'Offer Term 4', duration: 40 }));

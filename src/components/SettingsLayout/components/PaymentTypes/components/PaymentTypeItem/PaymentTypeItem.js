@@ -7,7 +7,7 @@ import Widget02 from 'views/Widgets/Widget02';
 
 const PaymentTypeItem = ({ type, click }) => (
   <div>
-    <Widget02 className="widget--clicable" onClick={click} color="indigo" icon="fa fa-bank" header={type.code} mainText={type.description} variant='0'></Widget02>
+    <Widget02 className="widget--clicable" onClick={click} color="orange" icon="fa fa-bank" header='' mainText={type.description} variant='0'></Widget02>
   </div>
 );
 
