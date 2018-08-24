@@ -18,12 +18,9 @@ export class Campaign {
   }
 
   addPromotion(code) {
-    console.log(code);
 
     if (this.promotions.indexOf(code) === -1) {
       this.promotions.push(code);
-      console.log(this.promotions);
-
     }
   }
 }

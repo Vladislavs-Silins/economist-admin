@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardBody, CardFooter } from 'reactstrap';
+import { Card, CardBody, CardFooter, Row, Col } from 'reactstrap';
 import classNames from 'classnames';
 import { mapToCssModules } from 'reactstrap/lib/utils';
 
@@ -31,7 +31,7 @@ class Widget02 extends Component {
     const { className, cssModule, header, mainText, icon, color, footer, link, children, variant, ...attributes } = this.props;
 
     // demo purposes only
-    const padding = (variant === '0' ? { card: 'p-3', icon: 'p-3', lead: 'mt-2' } : (variant === '1' ? {
+    const padding = (variant === '0' ? { card: 'p-0', icon: 'p-2', lead: 'mt-0' } : (variant === '1' ? {
       card: 'p-0', icon: 'p-4', lead: 'pt-3',
     } : { card: 'p-0', icon: 'p-4 px-5', lead: 'pt-3' }));
 
@@ -61,8 +61,18 @@ class Widget02 extends Component {
       <Card>
         <CardBody className={card.classes} {...attributes}>
           {blockIcon(card.icon)}
-          <div className={lead.classes}>{header}</div>
-          <div className="text-muted text-uppercase font-weight-bold font-xs">{mainText}</div>
+          <Row>
+            <Col lg={11}>
+              <div className={lead.classes}>{header}</div>
+              <div className="text-muted text-uppercase font-weight-bold font-xs">{mainText}</div>
+            </Col>
+            <Col lg={1}>
+              <i className="fa fa-times float-right pt-2 px-0 m-0 widget--clicable"></i>
+              {/* <Button block color="link" className="float-right py-2 px-0 m-0"><i className="fa fa-times"></i></Button> */}
+            </Col>
+          </Row>
+
+
         </CardBody>
         {cardFooter()}
       </Card>
