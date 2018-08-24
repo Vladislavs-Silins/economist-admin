@@ -9877,5 +9877,8 @@ body {
 .widget--clicable {
   cursor: pointer; }
 
+.tr--clicable {
+  cursor: pointer; }
+
 html body .app.flex-row.align-items-center {
   height: 100vh; }

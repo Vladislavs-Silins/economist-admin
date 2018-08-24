@@ -90,7 +90,7 @@ export default {
         },
         {
           name: 'Countries',
-          url: '/settings/countries',
+          url: '/settings/pricezones',
           icon: 'icon-map',
         },
 

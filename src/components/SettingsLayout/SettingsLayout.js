@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import OfferCategories from './components/OfferCategories';
 import PaymentTypes from './components/PaymentTypes';
 import OfferTerms from './components/OfferTerms';
-import Countries from './components/Countries';
+import PriceZones from './components/PriceZones';
 
 class SettingsLayout extends React.Component {
   static propTypes = {
@@ -74,10 +74,10 @@ class SettingsLayout extends React.Component {
                 </NavItem>
                 <NavItem>
                   <NavLink
-                    className={classnames({ active: this.state.activeTab === 'countries' })}
-                    onClick={() => { this.toggle('countries'); }}
+                    className={classnames({ active: this.state.activeTab === 'pricezones' })}
+                    onClick={() => { this.toggle('pricezones'); }}
                   >
-                    Countries
+                    Price Zones
                 </NavLink>
                 </NavItem>
               </Nav>
@@ -91,8 +91,8 @@ class SettingsLayout extends React.Component {
                 <TabPane tabId="terms">
                   <OfferTerms />
                 </TabPane>
-                <TabPane tabId="countries">
-                  <Countries />
+                <TabPane tabId="pricezones">
+                  <PriceZones />
                 </TabPane>
               </TabContent>
             </Col>
