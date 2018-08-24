@@ -67,7 +67,7 @@ class Widget02 extends Component {
               <div className="text-muted text-uppercase font-weight-bold font-xs">{mainText}</div>
             </Col>
             <Col lg={1}>
-              <i className="fa fa-times float-right pt-2 px-0 m-0 widget--clicable"></i>
+              <i className="fa fa-close float-right pt-2 px-0 m-0 widget--clicable"></i>
               {/* <Button block color="link" className="float-right py-2 px-0 m-0"><i className="fa fa-times"></i></Button> */}
             </Col>
           </Row>

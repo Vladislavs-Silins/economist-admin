@@ -1,11 +1,11 @@
 import React from 'react';
 import { Col, Button, Card, CardBody, Form, FormGroup, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { PropTypes } from 'prop-types';
-import { OfferCategory } from 'model/OfferCategory';
+import { PaymentType } from 'model/PaymentType';
 
-class OfferCategoryEdit extends React.Component {
+class PaymentTypeEdit extends React.Component {
   static propTypes = {
-    category: PropTypes.instanceOf(OfferCategory),
+    type: PropTypes.instanceOf(PaymentType),
     reset: PropTypes.func.isRequired
   }
 
@@ -23,7 +23,7 @@ class OfferCategoryEdit extends React.Component {
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>Code</InputGroupText>
                 </InputGroupAddon>
-                <Input type="text" id="code" defaultValue={this.props.category.code} placeholder="" required />
+                <Input type="text" id="code" defaultValue={this.props.type.code} placeholder="" required />
               </InputGroup>
             </Col>
             <Col lg={7}>
@@ -31,7 +31,7 @@ class OfferCategoryEdit extends React.Component {
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>Description</InputGroupText>
                 </InputGroupAddon>
-                <Input type="text" name="description" id="description" defaultValue={this.props.category.description} placeholder="" required />
+                <Input type="text" name="description" id="description" defaultValue={this.props.type.description} placeholder="" required />
               </InputGroup>
             </Col>
             <Col lg={1}>
@@ -47,4 +47,4 @@ class OfferCategoryEdit extends React.Component {
   )
 }
 
-export default OfferCategoryEdit;
+export default PaymentTypeEdit;

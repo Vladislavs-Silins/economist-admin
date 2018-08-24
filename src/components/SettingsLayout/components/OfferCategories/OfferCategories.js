@@ -3,7 +3,7 @@ import { OFFERCATEGORYMAP } from 'mock-data';
 
 import uuid from 'uuid';
 import OfferCategoryItem from './components/OfferCategoryItem';
-import OfferCategoryEdit from './components/OfferCategoryEdit/OfferCategoryEdit';
+import OfferCategoryEdit from './components/OfferCategoryEdit';
 import { OfferCategory } from 'model/OfferCategory';
 
 class OfferCategories extends React.Component {
