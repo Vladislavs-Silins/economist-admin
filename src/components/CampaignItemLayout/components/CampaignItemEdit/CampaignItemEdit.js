@@ -25,7 +25,7 @@ class CampaignItemEdit extends React.Component {
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>Code</InputGroupText>
                 </InputGroupAddon>
-                <Input type="text" id="code" placeholder={this.state.campaign.code} required />
+                <Input type="text" id="code" placeholder={this.props.campaign.code} required />
               </InputGroup>
             </Col>
             <Col lg={7}>
@@ -33,7 +33,7 @@ class CampaignItemEdit extends React.Component {
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText>Description</InputGroupText>
                 </InputGroupAddon>
-                <Input type="text" name="description" id="description" placeholder={this.state.campaign.description} required />
+                <Input type="text" name="description" id="description" placeholder={this.props.campaign.description} required />
               </InputGroup>
             </Col>
             <Col lg={2}>

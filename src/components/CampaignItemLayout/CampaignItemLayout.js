@@ -11,13 +11,28 @@ class CampaignItemLayout extends React.Component {
 
   }
   constructor(props) {
-    super(props)
+    super(props);
+    const unsubscribe = this.props.history.listen((location) => {
+      const currentCampaignCode = location.pathname.split('/').pop();
+
+      this.setState((prevState) => {
+        return {
+          campaign: CAMPAIGNMAP.get(currentCampaignCode),
+          code: currentCampaignCode
+        };
+      });
+    });
 
     this.state = {
       campaign: CAMPAIGNMAP.get(props.match.params.code),
-      code: props.match.params.cod
+      code: props.match.params.code,
+      unsubscribe: unsubscribe
     }
   }
+  componentWillUnmount = () => {
+    this.state.unsubscribe();
+  }
+
 
   render = () => (
     <div>

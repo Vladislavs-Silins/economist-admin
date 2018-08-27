@@ -14,7 +14,8 @@ class CampaignItemPromotionList extends React.Component {
   state = {
     promotions: [],
     redirect: false,
-    redirectCode: ''
+    redirectCode: '',
+    promotionMap: PROMOTIONMAP,
   };
 
   componentDidMount = () => {
@@ -49,7 +50,7 @@ class CampaignItemPromotionList extends React.Component {
       return (
         <div className="animated fadeIn">
           <Row>
-            {this.state.promotions.map((promotionCode, index) => {
+            {this.props.campaign.promotions.map((promotionCode, index) => {
               return (
                 <Col key={uuid()} xs="12" sm="6" lg="3">
                   <PromotionItem click={this.handleOpenPropertyItemForEdit(promotionCode)} promotion={this.state.promotionMap.get(promotionCode)} color={tools.getColor(index)}></PromotionItem>

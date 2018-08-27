@@ -15,7 +15,7 @@ class SettingsLayout extends React.Component {
   constructor(props) {
     super(props);
     const currentRoute = this.props.location.pathname.split('/').pop();
-    this.props.history.listen((location, action) => {
+    const unsubscribe = this.props.history.listen((location, action) => {
       const currentRoute = location.pathname.split('/').pop();
       this.setState((prevState) => {
         return {
@@ -27,8 +27,13 @@ class SettingsLayout extends React.Component {
 
     this.state = {
       activeTab: currentRoute,
-      redirect: false
+      redirect: false,
+      unsubscribe: unsubscribe
     };
+  }
+
+  componentWillUnmount = () => {
+    this.state.unsubscribe();
   }
 
   toggle = (tab) => {

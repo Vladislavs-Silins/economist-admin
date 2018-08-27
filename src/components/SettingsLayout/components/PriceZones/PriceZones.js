@@ -4,7 +4,7 @@ import { Table, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 import uuid from 'uuid';
 import PriceZoneItem from './components/PriceZoneItem';
 import PriceZonesEdit from './components/PriceZonesEdit';
-import { OfferTerm } from 'model/OfferTerm';
+import { PriceZone } from 'model/PriceZone';
 
 class Countries extends React.Component {
   static propTypes = {
@@ -12,8 +12,8 @@ class Countries extends React.Component {
   }
   state = {
     priceZones: [],
-    currentTerm: new OfferTerm(),
-    page: 0
+    priceZone: new PriceZone(),
+    page: 1
   }
 
   componentDidMount = () => {
@@ -24,18 +24,26 @@ class Countries extends React.Component {
       };
     });
   }
-  handleChooseTerm = (code) => () => {
+  handleChooseItem = (code) => () => {
     this.setState((prevState) => {
       return {
-        currentTerm: this.state.priceZonesMap.get(code),
+        priceZone: this.state.priceZonesMap.get(code),
       };
     });
   }
-  handleResetTerm = () => {
+  handleResetItem = () => {
 
     this.setState((prevState) => {
       return {
-        currentTerm: new OfferTerm(),
+        priceZone: new PriceZone(),
+      };
+    });
+  }
+
+  setPage = (page) => () => {
+    this.setState((prevState) => {
+      return {
+        page: page
       };
     });
   }
@@ -51,24 +59,24 @@ class Countries extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.state.priceZones.slice(this.state.page * 10, (this.state.page + 1) * 10 - 1).map((priceZoneCode, index) => {
+          {this.state.priceZones.slice((this.state.page - 1) * 10, (this.state.page) * 10 - 1).map((priceZoneCode, index) => {
             return (
-              <PriceZoneItem key={uuid()} click={this.handleChooseTerm(priceZoneCode)} priceZone={this.state.priceZonesMap.get(priceZoneCode)}></PriceZoneItem>
+              <PriceZoneItem key={uuid()} click={this.handleChooseItem(priceZoneCode)} priceZone={this.state.priceZonesMap.get(priceZoneCode)}></PriceZoneItem>
             )
           })
           }
         </tbody>
       </Table>
       <nav>
-        <PriceZonesEdit item={this.state.currentTerm} reset={this.handleResetTerm} />
+        <PriceZonesEdit item={this.state.priceZone} reset={this.handleResetItem} />
         <Pagination>
           <PaginationItem><PaginationLink previous tag="button">Prev</PaginationLink></PaginationItem>
-          <PaginationItem active>
-            <PaginationLink tag="button">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem><PaginationLink tag="button">2</PaginationLink></PaginationItem>
-          <PaginationItem><PaginationLink tag="button">3</PaginationLink></PaginationItem>
-          <PaginationItem><PaginationLink tag="button">4</PaginationLink></PaginationItem>
+          <PaginationItem active={this.state.page === 1}>
+            <PaginationLink tag="button" onClick={this.setPage(1)}>1</PaginationLink>
+          </PaginationItem >
+          <PaginationItem active={this.state.page === 2}><PaginationLink tag="button" onClick={this.setPage(2)}>2</PaginationLink></PaginationItem>
+          <PaginationItem active={this.state.page === 3}><PaginationLink tag="button" onClick={this.setPage(3)}>3</PaginationLink></PaginationItem>
+          <PaginationItem active={this.state.page === 4}><PaginationLink tag="button" onClick={this.setPage(4)}>4</PaginationLink></PaginationItem>
           <PaginationItem><PaginationLink next tag="button">Next</PaginationLink></PaginationItem>
         </Pagination>
       </nav>

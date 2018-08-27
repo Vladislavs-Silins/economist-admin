@@ -1,11 +1,11 @@
 import React from 'react';
 import { Col, Button, Card, CardBody, Form, FormGroup, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { PropTypes } from 'prop-types';
-import { PriceZone } from 'model/PriceZone';
+import { Product } from 'model/Product';
 
-class PriceZonesEdit extends React.Component {
+class ProductEdit extends React.Component {
   static propTypes = {
-    item: PropTypes.instanceOf(PriceZone),
+    item: PropTypes.instanceOf(Product),
     reset: PropTypes.func.isRequired
   }
 
@@ -18,28 +18,20 @@ class PriceZonesEdit extends React.Component {
       <CardBody>
         <Form action="" method="post" className="form-horizontal">
           <FormGroup className="pr-1" row>
-            <Col lg={6}>
+            <Col lg={3}>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
-                  <InputGroupText>Country</InputGroupText>
+                  <InputGroupText>Id</InputGroupText>
                 </InputGroupAddon>
-                <Input type="text" name="country" defaultValue={this.props.item.country} placeholder="" required />
+                <Input type="text" name="id" defaultValue={this.props.item.id} placeholder="Insert id" required />
               </InputGroup>
             </Col>
-            <Col lg={2}>
+            <Col lg={7}>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
-                  <InputGroupText>Country Code</InputGroupText>
+                  <InputGroupText>Description</InputGroupText>
                 </InputGroupAddon>
-                <Input type="text" name="countryCode" defaultValue={this.props.item.countryCode} placeholder="" required />
-              </InputGroup>
-            </Col>
-            <Col lg={2}>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>Currency</InputGroupText>
-                </InputGroupAddon>
-                <Input type="text" name="currency" defaultValue={this.props.item.currency} placeholder="" required />
+                <Input type="text" name="description" defaultValue={this.props.item.description} placeholder="Insert description" required />
               </InputGroup>
             </Col>
 
@@ -56,4 +48,4 @@ class PriceZonesEdit extends React.Component {
   )
 }
 
-export default PriceZonesEdit;
+export default ProductEdit;

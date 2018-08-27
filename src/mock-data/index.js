@@ -1,15 +1,19 @@
 import { Campaign } from "model/Campaign";
 import { Promotion } from 'model/Promotion';
 import { OfferCategory } from "model/OfferCategory";
-import { PaymentType } from './../model/PaymentType';
-import { OfferTerm } from "../model/OfferTerm";
+import { PaymentType } from 'model/PaymentType';
+import { OfferTerm } from "model/OfferTerm";
 import { PriceZone } from 'model/PriceZone';
+import { Premia } from "model/Premia";
+import { Product } from 'model/Product';
 export const CAMPAIGNMAP = new Map();
 export const PROMOTIONMAP = new Map();
 export const OFFERCATEGORYMAP = new Map();
 export const PAYMENTTYPEMAP = new Map();
 export const OFFERTERMMAP = new Map();
 export const PRICEZONESMAP = new Map();
+export const PREMIAMAP = new Map();
+export const PRODUCTMAP = new Map();
 
 CAMPAIGNMAP.set('1', new Campaign({ code: '1', description: 'Campaign 1' }));
 CAMPAIGNMAP.set('2', new Campaign({ code: '2', description: 'Campaign 2' }));
@@ -17,6 +21,17 @@ CAMPAIGNMAP.set('3', new Campaign({ code: '3', description: 'Campaign 3' }));
 CAMPAIGNMAP.set('4', new Campaign({ code: '4', description: 'Campaign 4' }));
 CAMPAIGNMAP.set('5', new Campaign({ code: '5', description: 'Campaign 5' }));
 
+PREMIAMAP.set('1', new Premia({ code: '1', description: 'Premia 1' }));
+PREMIAMAP.set('2', new Premia({ code: '2', description: 'Premia 2' }));
+PREMIAMAP.set('3', new Premia({ code: '3', description: 'Premia 3' }));
+PREMIAMAP.set('4', new Premia({ code: '4', description: 'Premia 4' }));
+PREMIAMAP.set('5', new Premia({ code: '5', description: 'Premia 5' }));
+PREMIAMAP.set('6', new Premia({ code: '6', description: 'Premia 6' }));
+
+PRODUCTMAP.set('1', new Product({ code: '1', description: 'Product 1', id: '1' }));
+PRODUCTMAP.set('2', new Product({ code: '2', description: 'Product 2', id: '2' }));
+PRODUCTMAP.set('3', new Product({ code: '3', description: 'Product 3', id: '3' }));
+PRODUCTMAP.set('4', new Product({ code: '4', description: 'Product 4', id: '4' }));
 
 PROMOTIONMAP.set('1.1', new Promotion({ code: '1.1', description: "Promotion 1 for Campaign 1", campaignCode: '1', url: "https://www.wearethebest.com" }));
 PROMOTIONMAP.set('1.2', new Promotion({ code: '1.2', description: "Promotion 2 for Campaign 1", campaignCode: '1', url: "https://www.wearethebest.com" }));
