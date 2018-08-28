@@ -1,9 +1,11 @@
 import React from 'react';
 import { Col, Row, Button } from 'reactstrap';
-import { CAMPAIGNMAP } from '../../mock-data';
 import CampaignItem from './components/CampaignItem';
 import uuid from 'uuid';
 import Tools from 'tools';
+import { connect } from 'react-redux';
+import selectCampaigns from 'store/selectors/campaigns';
+import { Redirect } from 'react-router-dom';
 
 
 class CampaignLayout extends React.Component {
@@ -11,46 +13,48 @@ class CampaignLayout extends React.Component {
 
   }
   state = {
-    campaigns: [],
-    campaignMap: {}
+    redirect: false,
+    redirectCode: '',
   }
-
-
-  componentDidMount = () => {
-    this.getCompaignList();
-  }
-
-  // TODO: change function that gets mock's data to correct one
-  getCompaignList = () => {
-    this.setState((prevState) => {
-      return {
-        campaignMap: CAMPAIGNMAP,
-        campaigns: Array.from(CAMPAIGNMAP.keys())
-      };
-    });
-
-  };
 
   handleOpenCompaignItemForEdit = (code) => () => {
+    this.setState(() => {
+      return {
+        redirect: true,
+        redirectCode: code
+      };
+    });
     this.props.history.push(`/campaign/${code}`);
   }
 
-  render = () => (
-    <div className="animated fadeIn">
-      <Row>
-        {this.state.campaigns.map((campaignCode, index) => {
-          return (
-            <Col key={uuid()} xs="12" sm="6" lg="3">
-              <CampaignItem click={this.handleOpenCompaignItemForEdit(campaignCode)} campaign={this.state.campaignMap.get(campaignCode)} color={Tools.getCampaignColor(campaignCode)}></CampaignItem>
-            </Col>
-          )
-        })}
-      </Row>
-      <Button size="lg" color="info" className="btn btn-pill p-3 px-4 border border-dark items-add-button"><i className="fa fa-plus"></i></Button>
-    </div>
-  )
+  render = () => {
+    if (this.state.redirect) {
+      return <Redirect push to={`/promotion/${this.state.redirectCode}`} />;
+    } else {
+      return (
+        <div className="animated fadeIn">
+          <Row>
+            {this.props.campaigns.map((campaign, index) => {
+              return (
+                <Col key={uuid()} xs="12" sm="6" lg="3">
+                  <CampaignItem click={this.handleOpenCompaignItemForEdit(campaign.code)} campaign={campaign} color={Tools.getCampaignColor(campaign.code)}></CampaignItem>
+                </Col>
+              )
+            })}
+          </Row>
+          <Button size="lg" color="primary" className="btn p-3 px-4 border border-dark items-add-button"><i className="fa fa-plus">Add</i></Button>
+        </div>
+      )
+    }
+  }
 }
 
-export default CampaignLayout;
+const mapStateToProps = (state) => {
+  return {
+    campaigns: selectCampaigns(state.campaigns, state.filters),
+  };
+};
+
+export default connect(mapStateToProps)(CampaignLayout);
 
 

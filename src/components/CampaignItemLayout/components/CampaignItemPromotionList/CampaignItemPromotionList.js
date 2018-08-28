@@ -58,7 +58,8 @@ class CampaignItemPromotionList extends React.Component {
               )
             })}
           </Row>
-          <Button size="lg" color="info" className="btn btn-pill p-3 px-4 border border-dark items-add-button"><i className="fa fa-plus"></i></Button>
+          {/* <Button size="lg" color="info" className="btn btn-pill p-3 px-4 border border-dark items-add-button"><i className="fa fa-plus"></i></Button> */}
+          <Button size="lg" color="primary" className="btn p-3 px-4 border border-dark items-add-button"><i className="fa fa-plus"></i>Add</Button>
         </div>
       )
     }

@@ -6,6 +6,7 @@ import { OfferTerm } from "model/OfferTerm";
 import { PriceZone } from 'model/PriceZone';
 import { Premia } from "model/Premia";
 import { Product } from 'model/Product';
+import { Offer } from "model/Offer";
 export const CAMPAIGNMAP = new Map();
 export const PROMOTIONMAP = new Map();
 export const OFFERCATEGORYMAP = new Map();
@@ -14,6 +15,7 @@ export const OFFERTERMMAP = new Map();
 export const PRICEZONESMAP = new Map();
 export const PREMIAMAP = new Map();
 export const PRODUCTMAP = new Map();
+export const OFFERMAP = new Map();
 
 CAMPAIGNMAP.set('1', new Campaign({ code: '1', description: 'Campaign 1' }));
 CAMPAIGNMAP.set('2', new Campaign({ code: '2', description: 'Campaign 2' }));
@@ -45,6 +47,13 @@ PROMOTIONMAP.set('3.1', new Promotion({ code: '3.1', description: "Promotion 1 f
 PROMOTIONMAP.set('5.1', new Promotion({ code: '5.1', description: "Promotion 1 for Campaign 5", campaignCode: '5', url: "https://www.bestcampaignonthispage.wow" }));
 PROMOTIONMAP.set('5.2', new Promotion({ code: '5.2', description: "Promotion 2 for Campaign 5", campaignCode: '5', url: "https://www.bestcampaignonthispage.wow" }));
 PROMOTIONMAP.set('5.3', new Promotion({ code: '5.3', description: "Promotion 3 for Campaign 5", campaignCode: '5', url: "https://www.bestcampaignonthispage.wow" }));
+
+OFFERMAP.set('1.1.1', new Offer({ code: '1.1.1', description: "Offer 1 for Promotion 1.1", promotionCode: '1.1', priceZone: "54" }));
+OFFERMAP.set('1.1.2', new Offer({ code: '1.1.2', description: "Offer 2 for Promotion 1.1", promotionCode: '1.1', priceZone: "37" }));
+
+OFFERMAP.set('2.1.1', new Offer({ code: '2.1.1', description: "Offer 1 for Promotion 2.1", promotionCode: '2.1', priceZone: "4" }));
+OFFERMAP.set('2.1.2', new Offer({ code: '2.1.2', description: "Offer 2 for Promotion 2.1", promotionCode: '2.1', priceZone: "67" }));
+OFFERMAP.set('2.1.3', new Offer({ code: '2.1.3', description: "Offer 3 for Promotion 2.1", promotionCode: '2.1', priceZone: "111" }));
 
 OFFERCATEGORYMAP.set('1', new OfferCategory({ code: '1', description: 'Category 1' }));
 OFFERCATEGORYMAP.set('2', new OfferCategory({ code: '2', description: 'Category 2' }));

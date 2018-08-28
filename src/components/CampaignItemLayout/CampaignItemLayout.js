@@ -1,7 +1,5 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-// import cssModule from 'react-css-modules';
-// import styles from './CampaignItemLayout.css';
 import { CAMPAIGNMAP } from 'mock-data/index';
 import CampaignItemEdit from './components/CampaignItemEdit';
 import CampaignItemPromotionList from './components/CampaignItemPromotionList';
@@ -47,5 +45,5 @@ class CampaignItemLayout extends React.Component {
   )
 }
 
-// export default cssModule(CampaignItemLayout, styles);
+
 export default CampaignItemLayout;

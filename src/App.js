@@ -11,24 +11,32 @@ import 'font-awesome/css/font-awesome.min.css';
 // Import Simple Line Icons Set
 import 'simple-line-icons/css/simple-line-icons.css';
 // Import Main styles for this application
-import './scss/style.css'
+import './scss/style.css';
+import { connect } from 'react-redux';
 
 // Containers
 import { DefaultLayout } from './containers';
 // Pages
-import { Login, Page404, Page500, Register } from './views/Pages';
-
-// import { renderRoutes } from 'react-router-config';
+import { Page404 } from './views/Pages';
+import { CAMPAIGNMAP, PROMOTIONMAP } from 'mock-data';
+import { setCampaigns } from './store/actions/campaigns';
+import { setPromotions } from './store/actions/promotions';
 
 class App extends Component {
+
+  componentDidMount = () => {
+    this.getMockData();
+  }
+  getMockData() {
+    this.props.dispatch(setCampaigns({ campaigns: Array.from(CAMPAIGNMAP.values()) }));
+    this.props.dispatch(setPromotions({ promotions: Array.from(PROMOTIONMAP.values()) }));
+  }
+
   render() {
     return (
       <HashRouter>
         <Switch>
-          <Route exact path="/login" name="Login Page" component={Login} />
-          <Route exact path="/register" name="Register Page" component={Register} />
           <Route exact path="/404" name="Page 404" component={Page404} />
-          <Route exact path="/500" name="Page 500" component={Page500} />
           <Route path="/" name="Home" component={DefaultLayout} />
         </Switch>
       </HashRouter>
@@ -36,4 +44,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = () => {
+  return {
+  };
+};
+
+export default connect(mapStateToProps)(App)
