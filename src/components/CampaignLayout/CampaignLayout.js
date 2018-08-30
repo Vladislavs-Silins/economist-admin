@@ -5,6 +5,7 @@ import uuid from 'uuid';
 import Tools from 'tools';
 import { connect } from 'react-redux';
 import selectCampaigns from 'store/selectors/campaigns';
+import selectPromotions from 'store/selectors/promotions';
 import { Redirect } from 'react-router-dom';
 
 
@@ -13,8 +14,7 @@ class CampaignLayout extends React.Component {
 
   }
   state = {
-    redirect: false,
-    redirectCode: '',
+
   }
 
   handleOpenCompaignItemForEdit = (code) => () => {
@@ -24,12 +24,16 @@ class CampaignLayout extends React.Component {
         redirectCode: code
       };
     });
-    this.props.history.push(`/campaign/${code}`);
+  }
+
+  hasPromotions = (campaignCode) => {
+
+    return (this.props.promotions.filter((item) => item.campaignCode === campaignCode).length) > 0;
   }
 
   render = () => {
     if (this.state.redirect) {
-      return <Redirect push to={`/promotion/${this.state.redirectCode}`} />;
+      return <Redirect push to={`/campaign/${this.state.redirectCode}`} />;
     } else {
       return (
         <div className="animated fadeIn">
@@ -37,7 +41,7 @@ class CampaignLayout extends React.Component {
             {this.props.campaigns.map((campaign, index) => {
               return (
                 <Col key={uuid()} xs="12" sm="6" lg="3">
-                  <CampaignItem click={this.handleOpenCompaignItemForEdit(campaign.code)} campaign={campaign} color={Tools.getCampaignColor(campaign.code)}></CampaignItem>
+                  <CampaignItem click={this.handleOpenCompaignItemForEdit(campaign.code)} campaign={campaign} color={Tools.getCampaignColor(campaign.code)} hasPromotions={this.hasPromotions(campaign.code)}></CampaignItem>
                 </Col>
               )
             })}
@@ -52,6 +56,7 @@ class CampaignLayout extends React.Component {
 const mapStateToProps = (state) => {
   return {
     campaigns: selectCampaigns(state.campaigns, state.filters),
+    promotions: selectPromotions(state.promotions, state.filters),
   };
 };
 

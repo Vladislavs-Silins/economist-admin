@@ -1,7 +1,6 @@
 export class Campaign {
   code = '';
   description = '';
-  promotions = []; // array of promotion's id
   constructor({ code, description }) {
     this.code = code;
     this.description = description;
@@ -9,9 +8,9 @@ export class Campaign {
 
   // TODO change mock method
   getPromotionsProgress() {
-    if(this.hasAnyPromotions()) {
-    const progress = Math.ceil(Math.random() * 100);
-    return this.code === '3' ? 100 : progress;
+    if (this.hasAnyPromotions()) {
+      const progress = Math.ceil(Math.random() * 100);
+      return this.code === '3' ? 100 : progress;
     } else {
       return 0;
     }
@@ -22,13 +21,12 @@ export class Campaign {
   }
 
   hasAnyPromotions() {
-    return this.promotions && (Array.isArray(this.promotions)) && this.promotions.length > 0;
+    // return this.promotions && (Array.isArray(this.promotions)) && this.promotions.length > 0;
+    console.log(this.props);
+
+    return false;
   }
 
   addPromotion(code) {
-    if (this.promotions.indexOf(code) === -1) {
-      this.promotions.push(code);
-    }
   }
 }
-

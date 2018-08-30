@@ -10,7 +10,7 @@ export class Promotion {
   endDate = new Date();
 
   //TODO: create constructor, that can work with redux store
-  constructor({ code, description, campaignCode, url }) {
+  constructor({ code = "", description = "", campaignCode = "", url = "" } = {}) {
     this.code = code;
     this.description = description;
     this.campaignCode = campaignCode;

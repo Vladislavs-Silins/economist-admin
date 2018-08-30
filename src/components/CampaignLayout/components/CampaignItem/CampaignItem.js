@@ -5,9 +5,9 @@ import { PropTypes } from 'prop-types';
 import { Campaign } from 'model/Campaign';
 import Widget01 from 'views/Widgets/Widget01';
 
-const CampaignItem = ({ campaign, color, click }) => {
+const CampaignItem = ({ campaign, color, click, hasPromotions }) => {
   const expired = campaign.getExpiredStateFlag();
-  const empty = !campaign.hasAnyPromotions();
+  const empty = !hasPromotions;
   if (expired) {
     return (
       <div>
@@ -37,7 +37,8 @@ const CampaignItem = ({ campaign, color, click }) => {
 CampaignItem.propTypes = {
   campaign: PropTypes.instanceOf(Campaign),
   color: PropTypes.string,
-  click: PropTypes.func.isRequired
+  click: PropTypes.func.isRequired,
+  hasPromotions: PropTypes.bool,
 };
 
 export default cssModule(CampaignItem, styles);

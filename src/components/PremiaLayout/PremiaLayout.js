@@ -1,11 +1,11 @@
 import React from 'react';
 import { Col, Row, Table, Pagination, PaginationItem, PaginationLink, Card, CardHeader } from 'reactstrap';
 import uuid from "uuid";
-import { Map } from 'core-js';
 import PremiaItem from './components/PremiaItem';
-import { PREMIAMAP } from 'mock-data';
 import PremiaEdit from './components/PremiaEdit';
 import { Premia } from 'model/Premia';
+import selectPremias from 'store/selectors/premias';
+import { connect } from 'react-redux';
 
 class PremiaLayout extends React.Component {
   static propTypes = {
@@ -13,36 +13,19 @@ class PremiaLayout extends React.Component {
   }
 
   state = {
-    premias: [],
     premia: new Premia(),
-    premiaMap: new Map()
   };
 
-  componentDidMount = () => {
-    this.getPremiaList();
-  }
-
-  // TODO: change function that gets mock's data to correct one
-  getPremiaList = () => {
-    this.setState((prevState) => {
+  handleChooseItem = (premia) => () => {
+    this.setState(() => {
       return {
-        premiaMap: PREMIAMAP,
-        premias: Array.from(PREMIAMAP.keys())
-      };
-    });
-
-  };
-
-  handleChooseItem = (code) => () => {
-    this.setState((prevState) => {
-      return {
-        premia: this.state.premiaMap.get(code),
+        premia
       };
     });
   }
   handleResetItem = () => {
 
-    this.setState((prevState) => {
+    this.setState(() => {
       return {
         premia: new Premia(),
       };
@@ -64,10 +47,9 @@ class PremiaLayout extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.premias.map((premiaCode, index) => {
-                  const premia = this.state.premiaMap.get(premiaCode);
+                {this.props.premias.map((premia, index) => {
                   return (
-                    <PremiaItem key={uuid()} item={premia} click={this.handleChooseItem(premiaCode)} />
+                    <PremiaItem key={uuid()} item={premia} click={this.handleChooseItem(premia)} />
                   )
                 })}
               </tbody>
@@ -96,6 +78,13 @@ PremiaLayout.propTypes = {
 
 };
 
-export default PremiaLayout;
+const mapStateToProps = (state) => {
+  return {
+    premias: selectPremias(state.premias, state.filters),
+  }
+};
+
+export default connect(mapStateToProps)(PremiaLayout);
+
 
 

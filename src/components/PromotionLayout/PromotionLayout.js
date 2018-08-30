@@ -1,8 +1,11 @@
 import React from 'react';
 import { Col, Row, Table, Badge, Pagination, PaginationItem, PaginationLink, Card, CardHeader, NavLink } from 'reactstrap';
-import { PROMOTIONMAP, CAMPAIGNMAP } from 'mock-data';
 import uuid from "uuid";
 import Tools from "tools";
+import { connect } from 'react-redux';
+import selectPromotions from 'store/selectors/promotions';
+import selectCampaigns from 'store/selectors/campaigns';
+import { Campaign } from 'model/Campaign';
 
 
 class PromotionLayout extends React.Component {
@@ -12,7 +15,6 @@ class PromotionLayout extends React.Component {
   }
 
   state = {
-    promotions: [],
     redirect: false,
     redirectCode: ''
   };
@@ -23,29 +25,8 @@ class PromotionLayout extends React.Component {
 
   // TODO: change function that gets mock's data to correct one
   getPromotionList = () => {
-    this.setState(() => {
-      return {
-        promotionMap: PROMOTIONMAP,
-        campaignMap: CAMPAIGNMAP,
-        promotions: Array.from(PROMOTIONMAP.keys()).sort((a, b) => {
-          const compaignCodeA = PROMOTIONMAP.get(a).code;
-          const compaignCodeB = PROMOTIONMAP.get(b).code;
-          if (compaignCodeA > compaignCodeB) {
-            return 1;
-          } else if (compaignCodeA === compaignCodeB) {
-            if (a.code > b.code) {
-              return 1;
-            } else {
-              return -1;
-            }
-
-          } else {
-            return -1;
-          }
-        }),
-      };
-    });
   };
+
   render = () => (
     <div>
       <Row>
@@ -66,14 +47,27 @@ class PromotionLayout extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.promotions.map((promotionCode, index) => {
-                  const promotion = this.state.promotionMap.get(promotionCode);
-                  const campaign = this.state.campaignMap.get(promotion.campaignCode);
+                {this.props.promotions.sort((a, b) => {
+                  const compaignCodeA = a.campaignCode;
+                  const compaignCodeB = b.campaignCode;
+                  if (compaignCodeA > compaignCodeB) {
+                    return 1;
+                  } else if (compaignCodeA === compaignCodeB) {
+                    if (a.code > b.code) {
+                      return 1;
+                    } else {
+                      return -1;
+                    }
 
+                  } else {
+                    return -1;
+                  }
+                }).map((promotion, index) => {
+                  const campaign = this.props.campaigns.filter((item) => item.code === promotion.campaignCode).pop() || new Campaign();
                   return (
                     <tr key={uuid()}>
                       <td>{promotion.code}</td>
-                      <td><NavLink href={`/#/promotion/${promotionCode}`}>{promotion.description}</NavLink></td>
+                      <td><NavLink href={`/#/promotion/${promotion.code}`}>{promotion.description}</NavLink></td>
                       <td>{promotion.startDate.toString()}</td>
                       <td>{promotion.endDate.toString()}</td>
 
@@ -124,4 +118,10 @@ PromotionLayout.propTypes = {
 
 };
 
-export default PromotionLayout;
+const mapStateToProps = (state) => {
+  return {
+    promotions: selectPromotions(state.promotions, state.filters),
+    campaigns: selectCampaigns(state.campaigns, state.filters),
+  }
+};
+export default connect(mapStateToProps)(PromotionLayout);

@@ -21,7 +21,6 @@ import routes from '../../routes';
 import DefaultAside from './DefaultAside';
 import DefaultFooter from './DefaultFooter';
 import DefaultHeader from './DefaultHeader';
-
 class DefaultLayout extends Component {
   render() {
     return (
@@ -50,7 +49,7 @@ class DefaultLayout extends Component {
                 )}
                 <Redirect from="/" to="/dashboard" />
               </Switch>
-            </Container>
+            </Container>            
           </main>
           <AppAside fixed hidden>
             <DefaultAside />
