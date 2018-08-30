@@ -18,10 +18,11 @@ import { connect } from 'react-redux';
 import { DefaultLayout } from './containers';
 // Pages
 import { Page404 } from './views/Pages';
-import { CAMPAIGNMAP, PROMOTIONMAP, PREMIAMAP } from 'mock-data';
+import { CAMPAIGNMAP, PROMOTIONMAP, PREMIAMAP, PRODUCTMAP } from 'mock-data';
 import { setCampaigns } from './store/actions/campaigns';
 import { setPromotions } from './store/actions/promotions';
 import { setPremias } from './store/actions/premias';
+import { setProducts } from './store/actions/products';
 
 class App extends Component {
 
@@ -32,6 +33,7 @@ class App extends Component {
     this.props.dispatch(setCampaigns({ campaigns: Array.from(CAMPAIGNMAP.values()) }));
     this.props.dispatch(setPromotions({ promotions: Array.from(PROMOTIONMAP.values()) }));
     this.props.dispatch(setPremias({ premias: Array.from(PREMIAMAP.values()) }));
+    this.props.dispatch(setProducts({ products: Array.from(PRODUCTMAP.values()) }));
   }
 
   render() {

@@ -2,9 +2,11 @@ import React from 'react';
 import { Col, Row, Table, Pagination, PaginationItem, PaginationLink, Card, CardHeader } from 'reactstrap';
 import uuid from "uuid";
 import { Product } from 'model/Product';
-import { PRODUCTMAP } from 'mock-data';
 import ProductItem from './components/ProductItem/index';
 import ProductEdit from './components/ProductEdit/ProductEdit';
+import selectProducts from 'store/selectors/products';
+import { connect } from 'react-redux';
+
 
 
 class ProductLayout extends React.Component {
@@ -14,29 +16,13 @@ class ProductLayout extends React.Component {
 
   state = {
     products: [],
-    product: new Product(),
-    productMap: new Map()
+    product: new Product()
   };
 
-  componentDidMount = () => {
-    this.getProductList();
-  }
-
-  // TODO: change function that gets mock's data to correct one
-  getProductList = () => {
+  handleChooseItem = (product) => () => {
     this.setState((prevState) => {
       return {
-        productMap: PRODUCTMAP,
-        products: Array.from(PRODUCTMAP.keys())
-      };
-    });
-
-  };
-
-  handleChooseItem = (code) => () => {
-    this.setState((prevState) => {
-      return {
-        product: this.state.productMap.get(code),
+        product
       };
     });
   }
@@ -65,10 +51,9 @@ class ProductLayout extends React.Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.products.map((productCode, index) => {
-                  const product = this.state.productMap.get(productCode);
+                {this.props.products.map((product, index) => {
                   return (
-                    <ProductItem key={uuid()} item={product} click={this.handleChooseItem(productCode)} />
+                    <ProductItem key={uuid()} item={product} click={this.handleChooseItem(product)} />
                   )
                 })}
               </tbody>
@@ -97,4 +82,11 @@ ProductLayout.propTypes = {
 
 };
 
-export default ProductLayout;
+const mapStateToProps = (state) => {
+  return {
+    products: selectProducts(state.products, state.filters)
+  }
+};
+export default connect(mapStateToProps)(ProductLayout);
+
+
