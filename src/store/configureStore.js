@@ -3,6 +3,7 @@ import campaignsReducer from './reducers/campaigns';
 import promotionsReducer from './reducers/promotions';
 import premiasReducer from './reducers/premias';
 import productsReducer from './reducers/products';
+import offerCategoryReducer from './reducers/offerCategories';
 import filtersReducer from './reducers/filters';
 
 export default () => {
@@ -15,6 +16,7 @@ export default () => {
             promotions: promotionsReducer,
             premias: premiasReducer,
             products: productsReducer,
+            offerCategories: offerCategoryReducer,
             filters: filtersReducer
         })
     );

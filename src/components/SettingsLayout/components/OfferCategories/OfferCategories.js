@@ -1,39 +1,30 @@
 import React from 'react';
-import { OFFERCATEGORYMAP } from 'mock-data';
-
+import { connect } from 'react-redux';
 import uuid from 'uuid';
 import OfferCategoryItem from './components/OfferCategoryItem';
 import OfferCategoryEdit from './components/OfferCategoryEdit';
 import { OfferCategory } from 'model/OfferCategory';
+import selectOfferCategories from 'store/selectors/offerCategories';
 
 class OfferCategories extends React.Component {
   static propTypes = {
 
   }
   state = {
-    categories: [],
-    currentCategory: new OfferCategory(),
+    category: new OfferCategory(),
   }
 
-  componentDidMount = () => {
+
+  handleChooseCategory = (category) => () => {
     this.setState(() => {
       return {
-        categoriesMap: OFFERCATEGORYMAP,
-        categories: Array.from(OFFERCATEGORYMAP.keys())
+        category,
       };
     });
   }
-  handleChooseCategory = (code) => () => {
 
-    this.setState((prevState) => {
-      return {
-        currentCategory: this.state.categoriesMap.get(code),
-      };
-    });
-  }
   handleResetCategory = () => {
-
-    this.setState((prevState) => {
+    this.setState(() => {
       return {
         currentCategory: new OfferCategory(),
       };
@@ -43,18 +34,25 @@ class OfferCategories extends React.Component {
   render = () => (
     <div className="animated fadeIn">
       <ul>
-        {this.state.categories.map((categoryCode, index) => {
+        {this.props.offerCategories.map((category, index) => {
           return (
             <li key={uuid()}>
-              <OfferCategoryItem click={this.handleChooseCategory(categoryCode)} category={this.state.categoriesMap.get(categoryCode)}></OfferCategoryItem>
+              <OfferCategoryItem click={this.handleChooseCategory(category)} category={category}></OfferCategoryItem>
             </li>
           )
         })
         }
       </ul>
-      <OfferCategoryEdit category={this.state.currentCategory} reset={this.handleResetCategory} />
+      <OfferCategoryEdit category={this.state.category} reset={this.handleResetCategory} />
     </div>
   )
 }
 
-export default OfferCategories;
+
+const mapStateToProps = (state) => {
+  return {
+    offerCategories: selectOfferCategories(state.offerCategories, state.filters),
+  }
+};
+export default connect(mapStateToProps)(OfferCategories);
+
