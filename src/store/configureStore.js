@@ -3,7 +3,9 @@ import campaignsReducer from './reducers/campaigns';
 import promotionsReducer from './reducers/promotions';
 import premiasReducer from './reducers/premias';
 import productsReducer from './reducers/products';
+import paymentTypesReducer from './reducers/paymentTypes';
 import offerCategoryReducer from './reducers/offerCategories';
+import offerTermReducer from './reducers/offerTerms';
 import filtersReducer from './reducers/filters';
 
 export default () => {
@@ -16,7 +18,9 @@ export default () => {
             promotions: promotionsReducer,
             premias: premiasReducer,
             products: productsReducer,
+            paymentTypes: paymentTypesReducer,
             offerCategories: offerCategoryReducer,
+            offerTerms: offerTermReducer,
             filters: filtersReducer
         })
     );

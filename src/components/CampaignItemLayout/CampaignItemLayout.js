@@ -18,14 +18,14 @@ class CampaignItemLayout extends React.Component {
 
       this.setState(() => {
         return {
-          campaign: this.props.campaigns.filter((item) => item.code === currentCampaignCode).pop() || new Campaign(),
+          campaign: this.props.campaigns.find((item) => item.code === currentCampaignCode) || new Campaign(),
           code: currentCampaignCode
         };
       });
     });
 
     this.state = {
-      campaign: this.props.campaigns.filter((item) => item.code === props.match.params.code).pop() || new Campaign(),
+      campaign: this.props.campaigns.find((item) => item.code === props.match.params.code) || new Campaign(),
       code: props.match.params.code,
       unsubscribe: unsubscribe
     }

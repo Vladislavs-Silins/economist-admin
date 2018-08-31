@@ -63,7 +63,7 @@ class PromotionLayout extends React.Component {
                     return -1;
                   }
                 }).map((promotion, index) => {
-                  const campaign = this.props.campaigns.filter((item) => item.code === promotion.campaignCode).pop() || new Campaign();
+                  const campaign = this.props.campaigns.find((item) => item.code === promotion.campaignCode) || new Campaign();
                   return (
                     <tr key={uuid()}>
                       <td>{promotion.code}</td>
